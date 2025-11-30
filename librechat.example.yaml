@@ -191,8 +191,20 @@ actions:
 #       - "mcp-obsidian"
 #       - /path/to/obsidian/vault
 
+
+
+includedTools: ["google"]
 # Definition of custom endpoints
 endpoints:
+  agents:
+      recursionLimit: 50
+      maxRecursionLimit: 100
+      disableBuilder: false
+      capabilities:
+        - "file_search"
+        - "tools"
+        - "chain"
+        - "artifacts" 
   # assistants:
   #   disableBuilder: false # Disable Assistants Builder Interface by setting to `true`
   #   pollIntervalMs: 3000  # Polling interval for checking assistant updates
@@ -223,6 +235,17 @@ endpoints:
   #   # (optional) Agent Capabilities available to all users. Omit the ones you wish to exclude. Defaults to list below.
   #   capabilities: ["execute_code", "file_search", "actions", "tools"]
   custom:
+    - name: "Ollama"
+      apiKey: "ollama"
+      baseURL: "http://localhost:11435/v1/"
+      models:
+        default: ["qwen2.5:0.5b"]
+      fetch: false
+      titleConvo: true
+      titleModel: "current_model"
+      modelDisplayLabel: "Ollama"
+
+
     # Groq Example
     - name: 'groq'
       apiKey: '${GROQ_API_KEY}'
@@ -334,6 +357,7 @@ endpoints:
       forcePrompt: false
       modelDisplayLabel: 'Portkey'
       iconURL: https://images.crunchbase.com/image/upload/c_pad,f_auto,q_auto:eco,dpr_1/rjqy7ghvjoiu4cd1xjbf
+    
 
 
 
@@ -349,6 +373,10 @@ endpoints:
       summarize: false
       summaryModel: "current_model"
       forcePrompt: false
+
+
+
+
 # Example modelSpecs configuration showing grouping options
 # The 'group' field organizes model specs in the UI selector:
 # - If 'group' matches an endpoint name (e.g., "openAI", "groq"), the spec appears nested under that endpoint
@@ -469,3 +497,6 @@ endpoints:
 #     # instructions: "You are a memory management assistant. Store and manage user information accurately."
 #     # model_parameters:
 #     #   temperature: 0.1
+
+
+
