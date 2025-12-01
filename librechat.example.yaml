@@ -237,7 +237,7 @@ endpoints:
   custom:
     - name: "Ollama"
       apiKey: "ollama"
-      baseURL: "http://localhost:11435/v1/"
+      baseURL: "http://host.docker.internal:11434/v1/"
       models:
         default: ["qwen2.5:0.5b"]
       fetch: false
