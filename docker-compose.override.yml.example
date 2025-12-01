@@ -17,12 +17,16 @@ services:
     - type: bind
       source: ./librechat.yaml
       target: /app/librechat.yaml
-    image: ghcr.io/danny-avila/librechat:latest
-
   ollama:
     image: ollama/ollama:latest
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [gpu]
     ports:
-      - "11435:11434"
+      - "11434:11434"
     volumes:
       - ./ollama:/root/.ollama
 # ---------------------------------------------------
